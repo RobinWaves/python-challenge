@@ -52,7 +52,7 @@ with open(input_file) as csvfile:
 
 output_file = os.path.join("Analysis", "analysis.txt")
 with open(output_file, 'w') as txtfile:
-    txtfile.writelines("\nFinancial Analysis\n")
+    txtfile.write("\nFinancial Analysis\n")
     txtfile.write("------------------\n")
     txtfile.write(f"Total Months: {sum_months}\n")
     txtfile.write(f"Total Revenue: ${sum_revenue}\n")

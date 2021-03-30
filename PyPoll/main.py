@@ -1,62 +1,44 @@
-# PyBank analyze financial records
+# PyPoll analyze votes
 
 # import modules 
 import os
 import csv
+import collections
 
-input_file = os.path.join("Resources", "budget_data.csv")
+input_file = os.path.join("Resources", "election_data.csv")
 
-sum_months = 0
-sum_revenue = 0
-revenue_chg = 0
-prev_revenue = 0 
-great_inc = ["", 0]
-great_dec = ["", 9000000]
-revenue_chgs = []
-avg_chg = 0
+num_votes = 0
+candidatelist = collections.defaultdict(list)
 
 with open(input_file) as csvfile:
     input_reader = csv.DictReader(csvfile)
 
     for row in input_reader:
-        # calculate the total number of months and revenue
-        sum_months += 1
-        sum_revenue += int(row["Profit/Losses"])
-       
-        # calculate the revenue change from previous month to current month
-        revenue_chg = int(row["Profit/Losses"]) - prev_revenue
-        # set previous revenue for next iteration
-        prev_revenue = int(row["Profit/Losses"])
-        # finds greatest revenue increase and greatest revenue decrease
-        if revenue_chg > great_inc[1]:
-            great_inc[0] = row["Date"]
-            great_inc[1] = revenue_chg
-        if revenue_chg < great_dec[1]:
-            great_dec[0] = row["Date"]
-            great_dec[1] = revenue_chg
-        # adds revenue change to list
-        revenue_chgs.append(revenue_chg)
-    
-    # finds average of revenue changes
-    #avg_chg = sum(revenue_chgs) / len(revenue_chgs)
-    avg_chg = (great_inc[1] + great_dec[1])/len(revenue_chgs)
+        # calculate the total number of votes
+        num_votes += 1
+
+        if row["Candidate"] not in candidatelist["Name"]:
+            candidatelist["Name"].append(row["Candidate"]) 
+            candidatelist[row["Candidate"]] = 1 
+        else:
+            candidatelist[row["Candidate"]] += 1 
 
     print("\n")
-    print("Financial Analysis")
-    print("------------------")
-    print(f"Total Months: {sum_months}")
-    print(f"Total Revenue: ${sum_revenue}")
-    print(f"Average Change: ${round(avg_chg, 2)}")
-    print(f"Greatest Increase in Profits: {great_inc[0]} ${great_inc[1]}")
-    print(f"Greatest Decrease in Profits: {great_dec[0]} ${great_dec[1]}")
+    print("Election Results")
+    print("--------------------")
+    print(f"Total Votes: {num_votes}")
+    print("--------------------")
+    # To print all keys and values separated by commas
+    print('\n'.join(str(key) + ': ' + str(value) for key, value in candidatelist.items()))
+    print("--------------------")
+    print(f"Winner: {str(candidatelist[1])}")
+    print("--------------------")
 
-output_file = os.path.join("Analysis", "analysis.txt")
-with open(output_file, 'w') as txtfile:
-    txtfile.writelines("\nFinancial Analysis\n")
-    txtfile.write("------------------\n")
-    txtfile.write(f"Total Months: {sum_months}\n")
-    txtfile.write(f"Total Revenue: ${sum_revenue}\n")
-    txtfile.write(f"Average Change: ${round(avg_chg, 2)}\n")
-    txtfile.write(f"Greatest Increase in Profits: {great_inc[0]} ${great_inc[1]}\n")
-    txtfile.write(f"Greatest Decrease in Profits: {great_dec[0]} ${great_dec[1]}\n")
-    txtfile.close()
+#output_file = os.path.join("Analysis", "analysis.txt")
+#with open(output_file, 'w') as txtfile:
+    #txtfile.write("\n")
+    #txtfile.write("Election Results")
+    #txtfile.write("--------------------")
+    #txtfile.write(f"Total Votes: {num_votes}")
+    #txtfile.write("--------------------")
+    #txtfile.close()
