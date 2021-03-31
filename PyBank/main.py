@@ -6,18 +6,23 @@ import csv
 
 input_file = os.path.join("Resources", "budget_data.csv")
 
-sum_months = 0
-sum_revenue = 0
 revenue_chg = 0
-prev_revenue = 0 
+avg_chg = 0
 great_inc = ["", 0]
 great_dec = ["", 9000000]
 revenue_chgs = []
-avg_chg = 0
 
 with open(input_file) as csvfile:
     input_reader = csv.DictReader(csvfile)
-
+    
+    # reads first row and assigns previous_revenue
+    first_row = next(input_reader)
+    prev_revenue = int(first_row["Profit/Losses"])
+    
+    # sums have to be assigned because took off first row
+    sum_revenue = int(first_row["Profit/Losses"])
+    sum_months = 1
+    
     for row in input_reader:
         # calculate the total number of months and revenue
         sum_months += 1
@@ -38,9 +43,8 @@ with open(input_file) as csvfile:
         revenue_chgs.append(revenue_chg)
     
     # finds average of revenue changes
-    #avg_chg = sum(revenue_chgs) / len(revenue_chgs)
-    avg_chg = (great_inc[1] + great_dec[1])/len(revenue_chgs)
-
+    avg_chg = sum(revenue_chgs) / len(revenue_chgs)
+    
     print("\n")
     print("Financial Analysis")
     print("------------------")
