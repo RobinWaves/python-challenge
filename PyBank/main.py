@@ -56,11 +56,11 @@ with open(input_file) as csvfile:
 
 output_file = os.path.join("Analysis", "analysis.txt")
 with open(output_file, 'w') as txtfile:
-    txtfile.write("\nFinancial Analysis\n")
+    txtfile.write("Financial Analysis\n")
     txtfile.write("------------------\n")
     txtfile.write(f"Total Months: {sum_months}\n")
     txtfile.write(f"Total Revenue: ${sum_revenue}\n")
     txtfile.write(f"Average Change: ${round(avg_chg, 2)}\n")
     txtfile.write(f"Greatest Increase in Profits: {great_inc[0]} ${great_inc[1]}\n")
-    txtfile.write(f"Greatest Decrease in Profits: {great_dec[0]} ${great_dec[1]}\n")
+    txtfile.write(f"Greatest Decrease in Profits: {great_dec[0]} ${great_dec[1]}")
     txtfile.close()
