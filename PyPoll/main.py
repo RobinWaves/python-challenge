@@ -5,7 +5,7 @@ import os
 import csv
 
 input_file = os.path.join("Resources", "election_data.csv")
-
+# assign variables
 num_votes = 0
 candidatelist = []
 candidatevotes = {}
