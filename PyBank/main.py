@@ -19,7 +19,7 @@ with open(input_file) as csvfile:
     first_row = next(input_reader)
     prev_revenue = int(first_row["Profit/Losses"])
     
-    # sums have to be assigned because took off first row
+    # inital sum of months and sum of revenue assigned because took off first row
     sum_revenue = int(first_row["Profit/Losses"])
     sum_months = 1
     
