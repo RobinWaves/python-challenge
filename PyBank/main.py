@@ -5,7 +5,7 @@ import os
 import csv
 
 input_file = os.path.join("Resources", "budget_data.csv")
-
+#assign variables
 revenue_chg = 0
 avg_chg = 0
 great_inc = ["", 0]
