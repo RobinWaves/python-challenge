@@ -45,16 +45,19 @@ with open(input_file) as csvfile:
     # finds average of revenue changes
     avg_chg = sum(revenue_chgs) / len(revenue_chgs)
     
-    print("\n")
-    print("Financial Analysis")
-    print("------------------")
-    print(f"Total Months: {sum_months}")
-    print(f"Total Revenue: ${sum_revenue}")
-    print(f"Average Change: ${round(avg_chg, 2)}")
-    print(f"Greatest Increase in Profits: {great_inc[0]} ${great_inc[1]}")
-    print(f"Greatest Decrease in Profits: {great_dec[0]} ${great_dec[1]}")
+# print in terminal
+print("\n")
+print("Financial Analysis")
+print("------------------")
+print(f"Total Months: {sum_months}")
+print(f"Total Revenue: ${sum_revenue}")
+print(f"Average Change: ${round(avg_chg, 2)}")
+print(f"Greatest Increase in Profits: {great_inc[0]} ${great_inc[1]}")
+print(f"Greatest Decrease in Profits: {great_dec[0]} ${great_dec[1]}")
 
+# create and print output file
 output_file = os.path.join("Analysis", "analysis.txt")
+
 with open(output_file, 'w') as txtfile:
     txtfile.write("Financial Analysis\n")
     txtfile.write("------------------\n")
