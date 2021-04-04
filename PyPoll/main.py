@@ -11,7 +11,7 @@ candidatelist = []
 candidatevotes = {}
 
 with open(input_file) as csvfile:
-    
+    # read file into a dictionary
     input_reader = csv.DictReader(csvfile)
     # Keys: Voter ID, County, Candidate
     for row in input_reader:
