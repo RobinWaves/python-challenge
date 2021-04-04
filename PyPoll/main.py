@@ -23,7 +23,8 @@ with open(input_file) as csvfile:
             candidatevotes[row["Candidate"]] = 1
         else:
             candidatevotes[row["Candidate"]] = candidatevotes[row["Candidate"]] + 1
-        
+
+#print in terminal        
 print("\nElection Results")
 print("--------------------")
 print(f"Total Votes: {num_votes}")
@@ -34,6 +35,7 @@ print("--------------------")
 print(f"Winner: {candidatelist[0]}")
 print("--------------------")
 
+# create and print output file
 output_file = os.path.join("Analysis", "analysis.txt")
 
 with open(output_file, 'w') as txtfile:
